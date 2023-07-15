@@ -7,31 +7,41 @@
         /* CSS Styles for the website */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
             margin: 0;
             padding: 0;
+            background-color: #222;
         }
         
         .container {
             max-width: 960px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
         }
         
         h1 {
-            color: #333;
+            color: #fff;
             text-align: center;
         }
         
         p {
-            color: #666;
             line-height: 1.6;
         }
         
         .profile-image {
             text-align: center;
             margin-bottom: 20px;
+        }
+        
+        .profile-image img {
+            border-radius: 50%;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #999;
         }
     </style>
 </head>
@@ -40,11 +50,10 @@
         <h1>Welcome to 10weeksofCloudOps!</h1>
         
         <div class="profile-image">
-            <img src="path/to/your/photo.jpg" alt="Your Photo" width="300" height="300">
+            <img src="image.jpeg" alt="Your Photo" width="300" height="300">
         </div>
         
         <p>This is a sample static website created by Nishant Singh.</p>
-        <p>Feel free to explore and enjoy the content.</p>
     </div>
     <footer>
         &copy; 2023 Nishant Singh. All rights reserved.
