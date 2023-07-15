@@ -2,8 +2,9 @@
 
 RG="10_Weeks_Of_CloudOps"
 Location="centralindia"
-AccountName="myfirstweekofcloudops"
+AccountName="firstweekofcloudops"
 ProfileName="CDN-First-Week"
+EndPoint="firstweekendpoint"
 
 echo "-------------------------------------"
 echo "|      Creating Resource Group      |"
@@ -42,6 +43,42 @@ az cdn profile create \
   --resource-group $RG \
   --sku Standard_Microsoft
 
-echo "--------------------------------------------------------------------------------"
-echo "| Upload Website Content and Create CDN Endpoint with above create CDN Profile |"
-echo "-------------------------------------------------------------------------------"
+
+echo "-------------------------------------"
+echo "|     Uploading Website Files       |"
+echo "-------------------------------------"
+Connection_String=$(az storage account show-connection-string --name $AccountName --resource-group $RG --query connectionString -o tsv)
+az storage blob upload-batch \
+  -d "\$web" \
+  -s "../10_Weeks_Of_CloudOps" \
+  --connection-string $Connection_String \
+  --overwrite \
+  --pattern "*.html"
+
+sleep 10
+
+az storage blob upload-batch \
+  -d "\$web" \
+  -s "../10_Weeks_Of_CloudOps" \
+  --connection-string $Connection_String \
+  --overwrite \
+  --pattern "*.jpeg"
+
+
+echo "-------------------------------------"
+echo "|     Creating CDN End Point        |"
+echo "-------------------------------------"
+sleep 10
+
+url=$(az storage account show --name $AccountName --resource-group $RG --query "primaryEndpoints.web" -o tsv | sed 's/^https:\/\/\([^/]*\)\/$/\1/')
+az cdn endpoint create \
+  --name $EndPoint \
+  --profile-name $ProfileName \
+  --resource-group $RG \
+  --origin $url \
+
+
+echo "---------------------------------------------------------------------------------------"
+echo "|     Wait for CDN to Configure Only few Mintues :) Your Setup is Almost Ready        |"
+echo "---------------------------------------------------------------------------------------"
+
