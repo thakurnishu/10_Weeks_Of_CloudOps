@@ -19,7 +19,7 @@ steps:
       ls -ltr
       pwd
       az storage account list -o table
-      ./pipeline_script.sh
+      ls /home/mahakal/Desktop/AZURE/Azure_DevOps_Agent/_work/1/s
 
 # - task: AzureCLI@2
 #   inputs:
