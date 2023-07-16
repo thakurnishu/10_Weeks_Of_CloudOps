@@ -20,10 +20,10 @@ steps:
       pwd
       az storage account list -o table
 
- - task: AzureCLI@2
-   inputs:
-     azureSubscription: 'My Azure Students Subscription'
-     scriptType: 'bash'
-     scriptLocation: 'scriptPath'
-     scriptPath: 'pipeline_script.sh'
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'My Azure Students Subscription'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: 'pipeline_script.sh'
 
