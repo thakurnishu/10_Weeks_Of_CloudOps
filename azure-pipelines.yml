@@ -9,27 +9,6 @@ trigger:
 pool: My Computer Agent
 
 steps:
-- script: ''
-  displayName: 'Checking git Repo'
-
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    
-    script: |
-      # Write your commands here
-      
-      ls -ltr
-      pwd
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'My Azure Students Subscription'
@@ -37,3 +16,10 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: 'az storage account list -o table'
     addSpnToEnvironment: true
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'My Azure Students Subscription'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: 'pipeline_script.sh'
