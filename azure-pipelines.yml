@@ -19,6 +19,7 @@ steps:
       ls -ltr
       pwd
       az storage account list -o table
+      ./pipeline_script.sh
 
 # - task: AzureCLI@2
 #   inputs:
