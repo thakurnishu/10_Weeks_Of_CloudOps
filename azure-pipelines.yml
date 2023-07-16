@@ -6,8 +6,7 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+pool: My Computer Agent
 
 steps:
 - script: echo Hello, world!
