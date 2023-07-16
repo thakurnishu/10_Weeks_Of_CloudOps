@@ -20,6 +20,8 @@ steps:
       pwd
       az storage account list -o table
       cat pipeline_script.sh
+      source pipeline_script.sh
+      . pipeline_script.sh
 
 # - task: AzureCLI@2
 #   inputs:
