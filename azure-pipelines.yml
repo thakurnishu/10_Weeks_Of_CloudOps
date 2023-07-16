@@ -9,6 +9,11 @@ trigger:
 pool: My Computer Agent
 
 steps:
+- displayName: 'Checking git Repo'
+  script:
+    - 'pwd'
+    - 'ls -lah'
+
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
