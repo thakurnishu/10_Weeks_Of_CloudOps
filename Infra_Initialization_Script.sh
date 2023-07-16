@@ -1,7 +1,7 @@
 #!/bin/bash
 
 RG="10_Weeks_Of_CloudOps"
-Location="centralindia"
+Location="eastus"
 AccountName="firstweekofcloudops"
 ProfileName="CDN-First-Week"
 EndPoint="firstweekendpoint"
@@ -78,7 +78,7 @@ az cdn endpoint create \
   --origin $url \
 
 
-echo "---------------------------------------------------------------------------------------"
-echo "|     Wait for CDN to Configure Only few Mintues :) Your Setup is Almost Ready        |"
-echo "---------------------------------------------------------------------------------------"
+echo "------------------------------------------------------------------------------------------------------------------------------------------------"
+echo "|     Wait for CDN to Configure Only few Mintues :) Your Setup is Almost Ready Here is Your CDN EndPoint https://$EndPoint.azureedge.net       |"
+echo "------------------------------------------------------------------------------------------------------------------------------------------------"
 
