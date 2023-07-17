@@ -9,17 +9,6 @@ trigger:
 pool: My Computer Agent
 
 steps:
-
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'My Azure Students Subscription'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      ls -ltr
-      pwd
-      az storage account list -o table
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'My Azure Students Subscription'
