@@ -8,8 +8,9 @@ trigger:
 
 pool: My Computer Agent
 
-steps:
+
 - task: AzureCLI@2
+  displayName: 'Running Pipeline Script'
   inputs:
     azureSubscription: 'My Azure Students Subscription'
     scriptType: 'bash'
