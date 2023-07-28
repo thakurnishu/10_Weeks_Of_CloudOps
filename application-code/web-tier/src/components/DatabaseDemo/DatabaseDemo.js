@@ -92,7 +92,7 @@
         render () {
         return (
             <div>
-            <h1 id='title' style={{paddingRight:"1em"}}>Aurora Database Demo Page</h1><input style={{float:"right", marginBottom:"1em"}} type = "button" value ="DEL" onClick={this.handleButtonClickDel} />
+            <h1 id='title' style={{paddingRight:"1em"}}>Azure Database for MySQL Servers</h1><input style={{float:"right", marginBottom:"1em"}} type = "button" value ="DEL" onClick={this.handleButtonClickDel} />
             <table id='transactions'>
                <tbody>
                    <tr>
