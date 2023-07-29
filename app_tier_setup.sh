@@ -1,56 +1,70 @@
 #!/bin/bash
 
-# Installing MYSQL mysql-server
 
-echo "-------------------------------------------"
-echo "|         Installing MySQL Server         |"
-echo "-------------------------------------------"
+echo "---------------------------------------------------------------------------------------------------"
+echo "| Maded Changes in application-code/app-tier/DbConfig.js and in this file for database connection |"
+echo "---------------------------------------------------------------------------------------------------"
 
-sudo apt update -y
-sudo apt install mysql-server -y
+read -p "yes/no: " ans
 
+if [[ "$ans" == "no" ]]; then
+ echo 
+ echo "Great then modify above mentioned files"
+elif [[ "$ans" == "yes" ]]; then
+ echo && echo 
+ echo "-------------------------------------------"
+ echo "|         Installing MySQL Server         |"
+ echo "-------------------------------------------"
 
-echo "-------------------------------------------"
-echo "|      Running Database Setup Script      |"
-echo "-------------------------------------------"
-mysql -h <Database Hostname> -u <Admin User> -p < db_setup.sql
-
-
-echo "-------------------------------------------"
-echo "|            Installing Nodejs            |"
-echo "-------------------------------------------"
-
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-source ~/.bashrc
-nvm install 16 && nvm use 16
-npm install -g pm2   
+ sudo apt update -y
+ sudo apt install mysql-server -y
 
 
-echo "-------------------------------------------"
-echo "|           Starting Application          |"
-echo "-------------------------------------------"
-
-cd application-code/app-tier
-npm install
-pm2 start index.js
-startup_as_process=$(pm2 startup | grep -o 'sudo env.*')
-eval "$startup_as_process"
-pm2 save
+ echo "-------------------------------------------"
+ echo "|      Running Database Setup Script      |"
+ echo "-------------------------------------------"
+ mysql -h <Database Hostname> -u <Admin User> -p < db_setup.sql
 
 
-echo "-------------------------------------------"
-echo "|           Testing Application          |"
-echo "-------------------------------------------"
+ echo "-------------------------------------------"
+ echo "|            Installing Nodejs            |"
+ echo "-------------------------------------------"
 
-echo "| http://localhost:4000/health check endpoint for application health |"
-curl http://localhost:4000/health
-echo "Check if above matches: 'This is the health check'"
+ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+ source ~/.bashrc
+ nvm install 16 && nvm use 16
+ npm install -g pm2   
 
 
-echo "| http://localhost:4000/transaction check point for database health |"
-curl http://localhost:4000/transaction
+ echo "-------------------------------------------"
+ echo "|           Starting Application          |"
+ echo "-------------------------------------------"
 
-echo "---------------------------------------------------------------------------"
-echo "|           Now you can Create Image out of this Virtual machine          |"
-echo "---------------------------------------------------------------------------"
+ cd application-code/app-tier
+ npm install
+ pm2 start index.js
+ startup_as_process=$(pm2 startup | grep -o 'sudo env.*')
+ eval "$startup_as_process"
+ pm2 save
 
+
+ echo "-------------------------------------------"
+ echo "|           Testing Application          |"
+ echo "-------------------------------------------"
+
+ echo "| http://localhost:4000/health check endpoint for application health |"
+ curl http://localhost:4000/health
+ echo "Check if above matches: 'This is the health check'"
+
+
+ echo "| http://localhost:4000/transaction check point for database health |"
+ curl http://localhost:4000/transaction
+
+ echo "---------------------------------------------------------------------------"
+ echo "|           Now you can Create Image out of this Virtual machine          |"
+ echo "---------------------------------------------------------------------------"
+
+else
+ echo 
+ echo "Enter Valid Answer"
+fi 
