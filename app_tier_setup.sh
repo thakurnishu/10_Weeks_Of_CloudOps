@@ -32,6 +32,7 @@ elif [[ "$ans" == "yes" ]]; then
 
  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
  source ~/.bashrc
+ source ~/.nvm/nvm.sh
  nvm install 16 && nvm use 16
  npm install -g pm2   
 
@@ -59,7 +60,7 @@ elif [[ "$ans" == "yes" ]]; then
 
  echo "| http://localhost:4000/transaction check point for database health |"
  curl http://localhost:4000/transaction
-
+ echo && echo 
  echo "---------------------------------------------------------------------------"
  echo "|           Now you can Create Image out of this Virtual machine          |"
  echo "---------------------------------------------------------------------------"
