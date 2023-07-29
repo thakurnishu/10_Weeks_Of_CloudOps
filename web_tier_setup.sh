@@ -45,6 +45,7 @@ elif [[ "$ans" == "yes" ]]; then
  sudo cp application-code/nginx.conf /etc/nginx/nginx.conf
  sudo systemctl restart nginx
 
+ cd /etc/nginx
  chmod -R 755 /home/$USER
  echo
 
