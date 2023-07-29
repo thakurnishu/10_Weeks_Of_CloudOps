@@ -15,6 +15,7 @@ elif [[ "$ans" == "yes" ]]; then
 
  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
  source ~/.bashrc
+ source ~/.nvm/nvm.sh
  nvm install 16
  nvm use 16
 
@@ -45,7 +46,7 @@ elif [[ "$ans" == "yes" ]]; then
  sudo systemctl restart nginx
 
  chmod -R 755 /home/$USER
-
+ echo
 
  echo "---------------------------------------------------------------------------"
  echo "|           Now you can Create Image out of this Virtual machine          |"
