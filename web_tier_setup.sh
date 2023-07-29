@@ -42,7 +42,7 @@ elif [[ "$ans" == "yes" ]]; then
  echo "-------------------------------"
 
  sudo rm /etc/nginx/nginx.conf
- sudo cp application-code/nginx.conf /etc/nginx/nginx.conf
+ sudo cp ../nginx.conf /etc/nginx/nginx.conf
  sudo systemctl restart nginx
 
  cd /etc/nginx
