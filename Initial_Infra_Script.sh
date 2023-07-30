@@ -287,6 +287,7 @@ az vm create --resource-group $resourceGroup \
   --admin-password $adminPwd \
   --vnet-name $Vnet \
   --subnet $web-Subnet \
+  --nsg $web-nsg \
   --public-ip-address "" \
   --no-wait
 
@@ -298,7 +299,8 @@ az vm create --resource-group $resourceGroup \
   --admin-username $adminUser \
   --admin-password $adminPwd \
   --vnet-name $Vnet \
-  --subnet $web-Subnet \
+  --subnet $app-Subnet \
+  --nsg $app-nsg \
   --public-ip-address "" \
   --no-wait
 
@@ -311,6 +313,7 @@ az vm create --resource-group $resourceGroup \
   --admin-password $adminPwd \
   --vnet-name $Vnet \
   --subnet $jump-Subnet \
+  --nsg $jump-nsg \
   > /dev/null
 echo "VMs are Created"
 echo && echo
