@@ -211,24 +211,72 @@ az network nsg rule create --resource-group $resourceGroup \
     --source-port-ranges "*" \
     --destination-address-prefixes "*" \
     --destination-port-ranges 80 \
+    --no-wait
+
+az network nsg rule create --resource-group $resourceGroup \
+    --nsg-name ApplicationGateaway-nsg \
+    --name "AllowHTTP" \
+    --priority 1010 \
+    --protocol "Tcp" \
+    --direction "Outbound" \
+    --source-address-prefixes "*" \
+    --source-port-ranges "*" \
+    --destination-address-prefixes "*" \
+    --destination-port-ranges 80 \
     > /dev/null
+
+
 echo "NSG Rules are Created."
 echo && echo 
+
+
+echo "-------------------------------------"
+echo "| Associating NSGs with the subnets |"
+echo "-------------------------------------"
+# Jump 
+az network vnet subnet update \
+    --resource-group $resourceGroup \
+    --vnet-name $Vnet \
+    --name $jump-Subnet \
+    --network-security-group $jump-nsg \
+    -no-wait
+
+# App 
+az network vnet subnet update \
+    --resource-group $resourceGroup \
+    --vnet-name $Vnet \
+    --name $app-Subnet \
+    --network-security-group $app-nsg \
+    --no-wait
+
+# Web 
+az network vnet subnet update \
+    --resource-group $resourceGroup \
+    --vnet-name $Vnet \
+    --name $web-Subnet \
+    --network-security-group $web-nsg \
+    --no-wait
+
+# PrivateEndpoint 
+az network vnet subnet update \
+    --resource-group $resourceGroup \
+    --vnet-name $Vnet \
+    --name PrivateEndpoint-Subnet \
+    --network-security-group PrivateEndpoint-nsg \
+    --no-wait
+
+# ApplicationGateaway
+az network vnet subnet update \
+    --resource-group $resourceGroup \
+    --vnet-name $Vnet \
+    --name ApplicationGateway-Subnet \
+    --network-security-group ApplicationGateaway-nsg \
+    > /dev/null
 
 
 echo "---------------------------------------------"
 echo "|  Creating Temporary Vm for Image Creation |"
 echo "---------------------------------------------"
-# Jump-VM
-az vm create --resource-group $resourceGroup \
-  --name $jump-VM \
-  --image Ubuntu2204 \
-  --size Standard_B1s \
-  --admin-username $adminUser \
-  --admin-password $adminPwd \
-  --vnet-name $Vnet \
-  --subnet $jump-Subnet \
-  --no-wait
 
 # Web-tier-VM
 az vm create --resource-group $resourceGroup \
@@ -252,6 +300,17 @@ az vm create --resource-group $resourceGroup \
   --vnet-name $Vnet \
   --subnet $web-Subnet \
   --public-ip-address "" \
+  --no-wait
+
+# Jump-VM
+az vm create --resource-group $resourceGroup \
+  --name $jump-VM \
+  --image Ubuntu2204 \
+  --size Standard_B1s \
+  --admin-username $adminUser \
+  --admin-password $adminPwd \
+  --vnet-name $Vnet \
+  --subnet $jump-Subnet \
   > /dev/null
 echo "VMs are Created"
 echo && echo
@@ -260,6 +319,5 @@ echo && echo
 echo "-------------------------------------------------"
 echo "| Creating LoadBalancer and Application Gateway |"
 echo "-------------------------------------------------"
-
 
 
