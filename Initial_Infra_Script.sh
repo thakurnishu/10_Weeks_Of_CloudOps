@@ -22,7 +22,7 @@ az group create --name $resourceGroup \
   --location $location \
   > /dev/null
 echo "Resource Group is Created."
-echo && echo 
+echo  
 
 echo "-----------------------------------------"
 echo "|  Creating Virtual Network and Subnet  |"
@@ -33,7 +33,6 @@ az network vnet create --resource-group $resourceGroup \
   --location $location \
   > /dev/null
 echo "Virtual Network is Created."
-echo 
 
 # Jump-Subnet
 az network vnet subnet create --resource-group $resourceGroup \
@@ -70,7 +69,7 @@ az network vnet subnet create --resource-group $resourceGroup \
   --address-prefix 10.0.5.0/24 \
   > /dev/null
 echo "Subnets are created and Attached to Vnet."
-echo && echo 
+echo  
 
 
 echo "-------------------------------------------------"
@@ -106,7 +105,7 @@ az network nsg create --resource-group $resourceGroup \
     --location $location \
     > /dev/null
 echo "NSG are Created."
-echo && echo 
+echo  
 
 
 echo "-----------------------------------"
@@ -227,7 +226,7 @@ az network nsg rule create --resource-group $resourceGroup \
 
 
 echo "NSG Rules are Created."
-echo && echo 
+echo  
 
 
 echo "-------------------------------------"
@@ -239,7 +238,7 @@ az network vnet subnet update \
     --vnet-name $Vnet \
     --name $jump-Subnet \
     --network-security-group $jump-nsg \
-    -no-wait
+    --no-wait
 
 # App 
 az network vnet subnet update \
@@ -272,7 +271,8 @@ az network vnet subnet update \
     --name ApplicationGateway-Subnet \
     --network-security-group ApplicationGateaway-nsg \
     > /dev/null
-
+echo "NSG are Associated with Subnet."
+echo
 
 echo "---------------------------------------------"
 echo "|  Creating Temporary Vm for Image Creation |"
