@@ -27,7 +27,6 @@ elif [[ "$ans" == "yes" ]]; then
  cd application-code/web-tier
  npm install
  npm run build
- sudo cp -r build/* /var/www/html/
 
 
  echo "-------------------------------"
@@ -36,13 +35,14 @@ elif [[ "$ans" == "yes" ]]; then
 
  sudo apt update
  sudo apt install nginx -y
+ sudo systemctl stop nginx
+ sudo cp -r build/* /var/www/html/
 
 
  echo "-------------------------------"
  echo "|    Changing nginx.conf      |"
  echo "-------------------------------"
 
- sudo systemctl stop nginx
  sudo rm /etc/nginx/nginx.conf
  sudo cp ../nginx.conf /etc/nginx/nginx.conf
  sudo systemctl restart nginx
