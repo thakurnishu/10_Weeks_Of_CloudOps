@@ -11,7 +11,7 @@ web="Web-tier"
 jump="Jump"
 
 # User Credentials
-adminUser="Week2"
+adminUser="week2"
 adminPwd="Challenge@week2"
 
 
@@ -141,7 +141,7 @@ az network nsg rule create --resource-group $resourceGroup \
 az network nsg rule create --resource-group $resourceGroup \
     --nsg-name $web-nsg \
     --name "AllowHTTP" \
-    --priority 1010 \
+    --priority 100 \
     --protocol "Tcp" \
     --direction "Inbound" \
     --source-address-prefixes "*" \
@@ -166,7 +166,7 @@ az network nsg rule create --resource-group $resourceGroup \
 az network nsg rule create --resource-group $resourceGroup \
     --nsg-name $app-nsg \
     --name "Allow4000" \
-    --priority 1010 \
+    --priority 100 \
     --protocol "Tcp" \
     --direction "Inbound" \
     --source-address-prefixes "*" \
@@ -178,7 +178,7 @@ az network nsg rule create --resource-group $resourceGroup \
 az network nsg rule create --resource-group $resourceGroup \
     --nsg-name $app-nsg \
     --name "AllowSQL" \
-    --priority 1010 \
+    --priority 110 \
     --protocol "Tcp" \
     --direction "Inbound" \
     --source-address-prefixes "*" \
