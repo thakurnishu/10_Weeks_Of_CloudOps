@@ -36,6 +36,7 @@ elif [[ "$ans" == "yes" ]]; then
  sudo apt update
  sudo apt install nginx -y
  sudo systemctl stop nginx
+ sudo rm -rf /var/www/html/*
  sudo cp -r build/* /var/www/html/
 
 
