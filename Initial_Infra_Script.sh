@@ -5,6 +5,7 @@ resourceGroup="10_Weeks_Of_CloudOps"
 location="eastus"
 Vnet="Week-2-Vnet"
 loadBalancer="Internal-LB"
+applicationGateway="Internet-AG"
 
 # VM name
 app="App-tier"
@@ -329,9 +330,10 @@ az network lb create \
     --name $loadBalancer \
     --location $location \
     --sku Standard \
-    --frontend-ip-name  internalFrontendIpName\
-    --backend-pool-name  internalBackendPoll\
-    --private-ip-address "10.0.2.5"
+    --frontend-ip-name  internalFrontendIpName \
+    --backend-pool-name  internalBackendPoll \
+    --public-ip-address "" \
+    --private-ip-address "10.0.2.5" \
     --private-ip-address-version IPv4 \
     --subnet $web-Subnet \
     --vnet-name $Vnet \
@@ -342,13 +344,28 @@ az network lb address-pool create \
     --resource-group $resourceGroup \
     --lb-name $loadBalancer \
     --name internalBackendPoll \
-    --no-wait
+    > /dev/null
+echo "LoadBalancer BackendPool is Created."
+echo 
 
+# Public-Ip For Application Gateway
+az network public-ip create \
+    --resource-group $resourceGroup \
+    --name ApplicationGateway-PublicIP \
+    --location $location \
+    --sku Standard \
+    --allocation-method Static \
+    > /dev/null
+echo "Created Public Ip for Application Gateway"
 
-#az network nic ip-config address-pool add \
-#    --resource-group $resourceGroup \
-#    --lb-name $loadBalancer \
-#    --nic-name  \
-#    --ip-config-name  \
-#    --address-pool internalBackendPoll
-
+    az network application-gateway create \
+    --resource-group $resourceGroup \
+    --name $applicationGateway \
+    --location $location \
+    --sku Standard_v2 \
+    --capacity 2 \
+    --vnet-name $Vnet \
+    --subnet ApplicationGateway-Subnet \
+    --frontend-port 80 \
+    --public-ip-address ApplicationGateway-PublicIP \
+    --public-ip-address-allocation Static \
