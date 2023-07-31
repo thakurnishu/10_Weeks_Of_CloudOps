@@ -4,6 +4,7 @@
 resourceGroup="10_Weeks_Of_CloudOps"
 location="eastus"
 Vnet="Week-2-Vnet"
+loadBalancer="Internal-LB"
 
 # VM name
 app="App-tier"
@@ -323,4 +324,31 @@ echo "-------------------------------------------------"
 echo "| Creating LoadBalancer and Application Gateway |"
 echo "-------------------------------------------------"
 
+az network lb create \
+    --resource-group $resourceGroup \
+    --name $loadBalancer \
+    --location $location \
+    --sku Standard \
+    --frontend-ip-name  internalFrontendIpName\
+    --backend-pool-name  internalBackendPoll\
+    --private-ip-address "10.0.2.5"
+    --private-ip-address-version IPv4 \
+    --subnet $web-Subnet \
+    --vnet-name $Vnet \
+    > /dev/null
+echo "LoadBalancer is Created."
+
+az network lb address-pool create \
+    --resource-group $resourceGroup \
+    --lb-name $loadBalancer \
+    --name internalBackendPoll \
+    --no-wait
+
+
+#az network nic ip-config address-pool add \
+#    --resource-group $resourceGroup \
+#    --lb-name $loadBalancer \
+#    --nic-name  \
+#    --ip-config-name  \
+#    --address-pool internalBackendPoll
 
