@@ -326,4 +326,5 @@ echo "Created Public Ip for Application Gateway"
     --frontend-port 80 \
     --public-ip-address ApplicationGateway-PublicIP \
     --public-ip-address-allocation Static \
-    --priority 1000
+    --priority 1000 \
+    > /dev/null
