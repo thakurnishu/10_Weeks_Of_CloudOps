@@ -186,44 +186,6 @@ az network nsg rule create --resource-group $resourceGroup \
     --source-port-ranges "*" \
     --destination-address-prefixes "*" \
     --destination-port-ranges 3306 \
-    --no-wait
-
-# PrivateEndpoint-nsg-rule
-az network nsg rule create --resource-group $resourceGroup \
-    --nsg-name PrivateEndpoint-nsg \
-    --name "AllowSQL" \
-    --priority 1010 \
-    --protocol "Tcp" \
-    --direction "Inbound" \
-    --source-address-prefixes "*" \
-    --source-port-ranges "*" \
-    --destination-address-prefixes "*" \
-    --destination-port-ranges 3306 \
-    --no-wait
-
-# ApplicationGateaway-nsg-rule
-az network nsg rule create --resource-group $resourceGroup \
-    --nsg-name ApplicationGateaway-nsg \
-    --name "AllowHTTP" \
-    --priority 1010 \
-    --protocol "Tcp" \
-    --direction "Inbound" \
-    --source-address-prefixes "*" \
-    --source-port-ranges "*" \
-    --destination-address-prefixes "*" \
-    --destination-port-ranges 80 \
-    --no-wait
-
-az network nsg rule create --resource-group $resourceGroup \
-    --nsg-name ApplicationGateaway-nsg \
-    --name "AllowHTTP" \
-    --priority 1010 \
-    --protocol "Tcp" \
-    --direction "Outbound" \
-    --source-address-prefixes "*" \
-    --source-port-ranges "*" \
-    --destination-address-prefixes "*" \
-    --destination-port-ranges 80 \
     > /dev/null
 
 
@@ -369,3 +331,4 @@ echo "Created Public Ip for Application Gateway"
     --frontend-port 80 \
     --public-ip-address ApplicationGateway-PublicIP \
     --public-ip-address-allocation Static \
+    --priority 1000
