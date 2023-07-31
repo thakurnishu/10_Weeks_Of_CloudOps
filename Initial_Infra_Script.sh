@@ -99,13 +99,8 @@ az network nsg create --resource-group $resourceGroup \
 az network nsg create --resource-group $resourceGroup \
     --name PrivateEndpoint-nsg \
     --location $location \
-    --no-wait
-
-# ApplicationGateaway-nsg
-az network nsg create --resource-group $resourceGroup \
-    --name ApplicationGateaway-nsg \
-    --location $location \
     > /dev/null
+
 echo "NSG are Created."
 echo  
 
