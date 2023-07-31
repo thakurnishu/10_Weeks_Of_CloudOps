@@ -213,23 +213,8 @@ az network vnet subnet update \
     --vnet-name $Vnet \
     --name $web-Subnet \
     --network-security-group $web-nsg \
-    --no-wait
-
-# PrivateEndpoint 
-az network vnet subnet update \
-    --resource-group $resourceGroup \
-    --vnet-name $Vnet \
-    --name PrivateEndpoint-Subnet \
-    --network-security-group PrivateEndpoint-nsg \
-    --no-wait
-
-# ApplicationGateaway
-az network vnet subnet update \
-    --resource-group $resourceGroup \
-    --vnet-name $Vnet \
-    --name ApplicationGateway-Subnet \
-    --network-security-group ApplicationGateaway-nsg \
     > /dev/null
+
 echo "NSG are Associated with Subnet."
 echo
 
