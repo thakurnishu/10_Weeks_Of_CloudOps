@@ -57,11 +57,11 @@ az network vnet subnet create --resource-group $resourceGroup \
   --address-prefix 10.0.3.0/24 \
   --no-wait
 
-# PrivateEndpoint-Subnet
+# DB-Subnet
 az network vnet subnet create --resource-group $resourceGroup \
   --vnet-name $Vnet \
   --name DB-Subnet \
-  --address-prefix 10.0.4.0/27 \
+  --address-prefix 10.0.4.0/24 \
   --no-wait
 
 # ApplicationGateway-Subnet
