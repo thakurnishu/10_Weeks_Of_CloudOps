@@ -10,7 +10,7 @@ applicationGateway="Internet-AG"
 # VM name
 app="App-tier"
 web="Web-tier"
-jump="Jump"
+jump="BastionHost"
 
 # User Credentials
 adminUser="week2"
@@ -262,48 +262,49 @@ echo "| Creating LoadBalancer and Application Gateway |"
 echo "-------------------------------------------------"
 
 az network lb create \
-    --resource-group $resourceGroup \
-    --name $loadBalancer \
-    --location $location \
-    --sku Standard \
-    --frontend-ip-name  internalFrontendIpName \
-    --backend-pool-name  internalBackendPoll \
-    --public-ip-address "" \
-    --private-ip-address "10.0.2.5" \
-    --private-ip-address-version IPv4 \
-    --subnet $web-Subnet \
-    --vnet-name $Vnet \
-    > /dev/null
+   --resource-group $resourceGroup \
+   --name $loadBalancer \
+   --location $location \
+   --sku Standard \
+   --frontend-ip-name  internalFrontendIpName \
+   --backend-pool-name  internalBackendPoll \
+   --public-ip-address "" \
+   --private-ip-address "10.0.2.5" \
+   --private-ip-address-version IPv4 \
+   --subnet $web-Subnet \
+   --vnet-name $Vnet \
+   > /dev/null
 echo "LoadBalancer is Created."
 
 az network lb address-pool create \
-    --resource-group $resourceGroup \
-    --lb-name $loadBalancer \
-    --name internalBackendPoll \
-    > /dev/null
+   --resource-group $resourceGroup \
+   --lb-name $loadBalancer \
+   --name internalBackendPoll \
+   > /dev/null
 echo "LoadBalancer BackendPool is Created."
 echo 
 
 # Public-Ip For Application Gateway
 az network public-ip create \
-    --resource-group $resourceGroup \
-    --name ApplicationGateway-PublicIP \
-    --location $location \
-    --sku Standard \
-    --allocation-method Static \
-    > /dev/null
+   --resource-group $resourceGroup \
+   --name ApplicationGateway-PublicIP \
+   --location $location \
+   --sku Standard \
+   --allocation-method Static \
+   > /dev/null
 echo "Created Public Ip for Application Gateway"
 
 az network application-gateway create \
-    --resource-group $resourceGroup \
-    --name $applicationGateway \
-    --location $location \
-    --sku Standard_v2 \
-    --capacity 2 \
-    --vnet-name $Vnet \
-    --subnet ApplicationGateway-Subnet \
-    --frontend-port 80 \
-    --public-ip-address ApplicationGateway-PublicIP \
-    --public-ip-address-allocation Static \
-    --priority 1000 \
-    > /dev/null
+   --resource-group $resourceGroup \
+   --name $applicationGateway \
+   --location $location \
+   --sku Standard_v2 \
+   --capacity 2 \
+   --vnet-name $Vnet \
+   --subnet ApplicationGateway-Subnet \
+   --frontend-port 80 \
+   --public-ip-address ApplicationGateway-PublicIP \
+   --public-ip-address-allocation Static \
+   --priority 1000 \
+   > /dev/null
+echo "Created Application Gateway"
