@@ -291,7 +291,7 @@ az network public-ip create \
     > /dev/null
 echo "Created Public Ip for Application Gateway"
 
-    az network application-gateway create \
+az network application-gateway create \
     --resource-group $resourceGroup \
     --name $applicationGateway \
     --location $location \
