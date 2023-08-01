@@ -93,12 +93,6 @@ az network nsg create --resource-group $resourceGroup \
 az network nsg create --resource-group $resourceGroup \
     --name $app-nsg \
     --location $location \
-    --no-wait
-
-# PrivateEndpoint-nsg
-az network nsg create --resource-group $resourceGroup \
-    --name PrivateEndpoint-nsg \
-    --location $location \
     > /dev/null
 
 echo "NSG are Created."
@@ -231,7 +225,6 @@ az vm create --resource-group $resourceGroup \
   --admin-password $adminPwd \
   --vnet-name $Vnet \
   --subnet $web-Subnet \
-  --nsg $web-nsg \
   --public-ip-address "" \
   --no-wait
 
@@ -244,7 +237,6 @@ az vm create --resource-group $resourceGroup \
   --admin-password $adminPwd \
   --vnet-name $Vnet \
   --subnet $app-Subnet \
-  --nsg $app-nsg \
   --public-ip-address "" \
   --no-wait
 
@@ -257,7 +249,6 @@ az vm create --resource-group $resourceGroup \
   --admin-password $adminPwd \
   --vnet-name $Vnet \
   --subnet $jump-Subnet \
-  --nsg $jump-nsg \
   > /dev/null
 echo "VMs are Created"
 echo && echo
