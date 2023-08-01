@@ -60,7 +60,7 @@ az network vnet subnet create --resource-group $resourceGroup \
 # PrivateEndpoint-Subnet
 az network vnet subnet create --resource-group $resourceGroup \
   --vnet-name $Vnet \
-  --name PrivateEndpoint-Subnet \
+  --name DB-Subnet \
   --address-prefix 10.0.4.0/27 \
   --no-wait
 
