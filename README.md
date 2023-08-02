@@ -1,3 +1,4 @@
+# First Week of Challenge
 ## Overview
 Hi Everyone, In First Week of Challenge I have Deployed Simple Static WebSite in Azure Cloud using an Azure Storage Account to host static website, utilized Azure CDN to ensure global availability of our website across edge locations, and employed Azure DevOps for CI/CD to automate the tasks.
 
