@@ -10,23 +10,28 @@
             margin: 0;
             padding: 0;
             background-color: #222;
+            height: 100vh;
+            color: #fff;
         }
         
         .container {
             max-width: 960px;
             margin: 0 auto;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
         
         h1 {
-            color: #fff;
             text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
         }
         
         p {
             line-height: 1.6;
+            margin-bottom: 15px;
         }
         
         .profile-image {
@@ -36,13 +41,35 @@
         
         .profile-image img {
             border-radius: 50%;
+            width: 300px;
+            height: 300px;
+            border: 5px solid #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
         
         footer {
+
             text-align: center;
-            margin-top: 20px;
+            margin-top: 50px;
             color: #999;
         }
+        
+        /* Add custom styles for links */
+        a {
+            color: #66ccff;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: #99e6ff;
+        }
+
+        .para{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
     </style>
 </head>
 <body>
@@ -50,15 +77,16 @@
         <h1>Welcome to 10weeksofCloudOps!</h1>
         
         <div class="profile-image">
-            <img src="image.jpeg" alt="Your Photo" width="300" height="300">
+            <img src="https://avatars.githubusercontent.com/u/90508814?v=4" alt="Your Photo">
         </div>
-        
-        <p>Hello This is First week of Challenge</p>
-        <p>:) Thanks for viewing This.</p>
+        <div class="para">
+            <p>Hello, this is the first week of the challenge. Thanks for viewing this.</p>
+            <p>Stay tuned for more exciting content in the upcoming weeks.</p>
+        </div>
     </div>
+
     <footer>
-        &copy; 2023 Nishant Singh. All rights reserved.
+        &copy; 2023 Nishant Singh. All rights reserved. | <a href="https://github.com/thakurnishu/10_Weeks_Of_CloudOps" target="_blank">Github Repo</a>
     </footer>
 </body>
 </html>
-
